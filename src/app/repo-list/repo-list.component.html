@@ -1,0 +1,97 @@
+<div class="repositories-list" [ngClass]="{'plitka-disp': plitkaDisplay}">
+    <p class="my-repositories-list" [ngClass]="{'my-repositories-list-active': githubApi.myListPage}">My List</p>
+    <div class="change-view-buttons" [ngClass]="{'change-view-buttons-active': githubApi.viewButtons}">
+        <div class="plitka" (click)="changeViewOnPlitka()">
+            <div class="boxik" [ngClass]="{'boxik-active': plitkaDisplay}"></div>
+            <div class="boxik" [ngClass]="{'boxik-active': plitkaDisplay}"></div>
+            <div class="boxik" [ngClass]="{'boxik-active': plitkaDisplay}"></div>
+            <div class="boxik" [ngClass]="{'boxik-active': plitkaDisplay}"></div>
+        </div>
+        <div class="spisok" (click)="changeViewOnList()">
+            <div class="spisok__line" [ngClass]="{'spisok-active': listDisplay}"></div>
+            <div class="spisok__line" [ngClass]="{'spisok-active': listDisplay}"></div>
+            <div class="spisok__line" [ngClass]="{'spisok-active': listDisplay}"></div>
+        </div>
+    </div>
+    <div class="repositores" *ngFor="let repo of githubApi.repositoriesList">
+        <hr>
+        <div class="repositori">
+            <div class="repositori__main-info">
+                    <div class="add-repo-tolist" (click)="githubApi.addRepoToMyList(addRepoButton, repo)">
+                        <div class="repo-no-added" [ngClass]="{'repo-added': repo.repoAdded}"></div>
+                    </div>
+                    <div class="repositori__information">
+                    <a class="repositori__header" href="{{ repo.html_url }}" target="_blank">
+                        {{ repo.full_name }}
+                    </a>
+                    <div class="repositori__info">{{ repo.description }}</div>
+                    <div class="tags">
+                        <div class="tag" *ngFor="let tag of repo.searchKeywords"><p class="tag__text"> {{ tag }}</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="repositori__stats">
+                <div class="repositori__stats-stars"><svg width="25" height="23" viewBox="0 0 25 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M25 8.65385L16.25 7.54615L12.5 0L8.75 7.54615L0 8.65385L6.42857 14.2962L4.76786 22.5L12.5 18.4673L20.2321 22.5L18.5714 14.2962L25 8.65385Z" fill="#F1E05A"/>
+                    </svg>
+                    {{ starsNumber(repo.stargazers_count) }}
+                </div>
+                <div class="repositori__stats-language">{{ repo.language }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div [ngClass]="{'not-found-text-hide': githubApi.myListPage}">
+        <div class="repositories-not-found-no-active" [ngClass]="{'repositories-not-found': githubApi.notFoundResult}">
+                <svg width="189" height="189" viewBox="0 0 189 189" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M109.315 130.74C127.729 128.565 147.315 121.87 147.315 90.0637C147.315 81.0234 144.131 73.6561 138.946 67.9636C139.783 65.7894 142.459 57.5856 137.937 46.2039C137.937 46.2039 131.241 44.0267 115.509 54.5719C108.813 52.7325 101.448 51.5586 94.5849 51.5586C87.5517 51.5586 80.1844 52.7325 73.6557 54.5719C57.7524 44.0267 51.0569 46.2039 51.0569 46.2039C46.5383 57.5856 49.2175 65.7894 50.0536 67.9636C44.8631 73.6557 41.6826 81.0234 41.6826 90.0637C41.6826 121.87 61.2681 128.565 79.6827 130.74C77.3409 132.753 75.164 136.599 74.3276 141.957C69.6387 143.964 57.418 147.816 50.0536 135.094C50.0536 135.094 45.6996 127.228 37.4984 126.726C37.4984 126.726 29.2946 126.559 36.8292 131.743C36.8292 131.743 42.3515 134.258 46.0366 143.797C46.0366 143.797 51.0569 159.703 74.1574 154.679V168.907C74.1574 171.087 72.4852 173.596 68.301 172.927C35.4888 162.044 11.8863 130.907 11.8863 94.4151C11.8863 48.7129 48.8801 11.7195 94.5849 11.7195C140.117 11.7195 177.281 48.7133 177.114 94.4151C177.114 130.907 153.509 161.877 120.699 172.927C116.512 173.763 114.839 171.255 114.839 168.907V145.977C114.84 138.272 112.325 133.254 109.315 130.74ZM189 94.5849C189 42.3515 146.646 0 94.5849 0C42.3515 0 0 42.3515 0 94.5849C0 146.646 42.3515 189 94.5849 189C146.646 189 189 146.646 189 94.5849Z" fill="black" fill-opacity="0.0428"/>
+                </svg>
+                <div class="not-found-text">
+                <p class="repositories-not-found__text">NO RESULTS FOUND</p>
+                <p class="repositories-not-found__bottom-text"> select other parameters and try again</p> 
+                </div>
+        </div>
+    </div>
+
+
+
+
+<div class="view-repo-plitka" [ngClass]="{'listDisplay': listDisplay}">
+    <p class="my-repositories-list" [ngClass]="{'my-repositories-list-active': githubApi.myListPage}">My List</p>
+    <div class="change-view-buttons" [ngClass]="{'change-view-buttons-active': githubApi.viewButtons}">
+        <div class="plitka" (click)="changeViewOnPlitka()">
+                <div class="boxik" [ngClass]="{'boxik-active': plitkaDisplay}"></div>
+                <div class="boxik" [ngClass]="{'boxik-active': plitkaDisplay}"></div>
+                <div class="boxik" [ngClass]="{'boxik-active': plitkaDisplay}"></div>
+                <div class="boxik" [ngClass]="{'boxik-active': plitkaDisplay}"></div>
+        </div>
+        <div class="spisok" (click)="changeViewOnList()">
+                <div class="spisok__line" [ngClass]="{'spisok-active': listDisplay}"></div>
+                <div class="spisok__line" [ngClass]="{'spisok-active': listDisplay}"></div>
+                <div class="spisok__line" [ngClass]="{'spisok-active': listDisplay}"></div>
+        </div>
+    </div>
+    <div class="repo-boxes">
+        <div class="repo-box" *ngFor="let repo of githubApi.repositoriesList">
+            <div class="repo-box__header">
+                <p class="repo-box__header-language"> {{ repo.language }} </p>
+                <p class="repo-box__header-stars">
+                        <svg width="25" height="23" viewBox="0 0 25 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M25 8.65385L16.25 7.54615L12.5 0L8.75 7.54615L0 8.65385L6.42857 14.2962L4.76786 22.5L12.5 18.4673L20.2321 22.5L18.5714 14.2962L25 8.65385Z" fill="#F1E05A"/>
+                            </svg>
+                            {{ starsNumber(repo.stargazers_count) }}
+                </p>
+            </div>
+            <div class="repo-box__main">
+                <a class="repo-box__main-fullname" href="{{ repo.html_url }}" target="_blank">{{ repo.full_name }}</a>
+                <div class="repo-box__main-description">{{ repo.description }}</div>
+                <div class="repo-box__main-tags">
+                        <div class="tag" *ngFor="let tag of repo.searchKeywords"><p class="tag__text"> {{ tag }}</p></div>
+                </div>
+            </div>
+            <div class="repo-box__button">
+                <button class="add-repo-to-list" #addRepoButton [ngClass]="{'delete-repo-from-list-active': repo.repoAdded}" (click)="githubApi.addRepoToMyList(addRepoButton, repo)"> ADD TO LIST </button>
+            </div>
+        </div>
+    </div>
+</div>

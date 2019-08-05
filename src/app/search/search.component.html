@@ -1,0 +1,29 @@
+<div class="search-place" [ngClass]="{'search-hide': githubApi.myListPage}">
+    <div class="search-place__type" (click)="openTypes()">
+        <div class="types-list">
+        <p class="currentType">{{ currentType }}</p>
+        <ul class="list" [ngClass]="{'types-list-open': typesListOpen}">
+            <li class="list__item" *ngFor="let type of types" (click)="chooseType(type)">
+                {{type}}
+            </li>
+        </ul>
+        </div>
+        <div class="black-arrow"></div>
+    </div>
+    <div class="search-place__language" (click)="openList()">
+        <div class="search-place__language-list">
+        <p class="currentLanguage">{{currentLang}}</p>
+        <ul class="list" [ngClass]="{'languages-list-open': languagesListOpen}" #languagesList>
+            <li class="list__item" *ngFor="let language of languages" (click)="chooseLanguage(language)">
+                {{language}}
+            </li>
+        </ul>
+        </div>
+        <div class="black-arrow"></div>
+    </div>
+    <div class="input-style">
+        <input type="text" class="search-place__input"  #inputTopic (keyup)="githubApi.inputTopic(inputTopic)">
+        <p class="input-style-type" [ngClass]="{'input-style-type-active': githubApi.inputTopics}">Type here for search</p>
+    </div>
+    <button class="search-place__button" (click)="searchRepositories(inputTopic)">SEARCH</button>
+</div>

@@ -1,0 +1,74 @@
+.header {
+    background: #3C4146;
+    width: 100%;
+    display: flex;
+    color: white;
+    justify-content: space-between;
+    font-family: Roboto;
+    height: 60px;
+    &__logo {
+       display: flex;
+       font-style: normal;
+       font-weight: bold;
+       font-size: 24px;
+       margin-left: 30px;
+       height: auto;
+    }
+    &__logo-text {
+        margin-top: 10px;
+        margin-left: 16px;
+    }
+    &__logo-text-search {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 16px;
+        color: #B3BCC7;
+        margin-top: 0px;
+    }
+    &__pages {
+        display: flex;
+        margin-right: 30px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 19px;
+        align-items: center;
+    }
+}
+.git-logo {
+    margin-top: 6px;
+}
+.search-page {
+    margin-right: 19px;
+}
+.search-page, .mylist-page {
+    color: #B3BCC7;
+    cursor: pointer;
+}
+.search-page-active, .mylist-page-active {
+    color: white;
+}
+.footer {
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    background: #3C4146;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 17px;
+    color: #FFFFFF;
+}
+.wrapper {
+    position: relative;
+    min-height: 100%;
+}

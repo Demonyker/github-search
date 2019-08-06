@@ -13,16 +13,7 @@ export class RepoListComponent implements OnInit {
 
   ngOnInit() {
   }
-  changeViewOnPlitka() {
-    this.plitkaDisplay = true;
-    this.listDisplay = false;
-    this.githubApi.plitkaDisplay = this.plitkaDisplay;
-  }
-  changeViewOnList() {
-    this.plitkaDisplay = false;
-    this.listDisplay = true;
-    this.githubApi.plitkaDisplay = this.plitkaDisplay;
-  }
+  
   starsNumber(stars) {
     if(stars > 1000) {
       let delStars = `${stars}`.split('');

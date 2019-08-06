@@ -7,11 +7,10 @@
         </svg>
         <div class="header__logo-text">GitHub <br> <p class="header__logo-text-search">search</p></div></div>
   <div class="header__pages">
-    <div class="search-page" (click)="githubApi.switchOnSearch()" [ngClass]="{'search-page-active': githubApi.searchPage}">Search</div>
-    <div class="mylist-page" (click)="githubApi.switchOnMyList()" [ngClass]="{'mylist-page-active': githubApi.myListPage}">My list</div>
+    <a class="search-page" (click)="githubApi.switchOnSearch()" [ngClass]="{'search-page-active': githubApi.searchPage}" routerLink="/search" routerLinkActive="search-page-active">Search</a>
+    <a class="mylist-page" (click)="githubApi.switchOnMyList()" [ngClass]="{'mylist-page-active': githubApi.myListPage}" routerLink="/my-list" routerLinkActive="mylist-page-active">My list</a>
   </div>
 </div>
-<app-search></app-search>
-<app-repo-list></app-repo-list>
+<router-outlet></router-outlet>
 <div class="footer"><p>copyright @lodossteam 2018</p></div>
 </div>

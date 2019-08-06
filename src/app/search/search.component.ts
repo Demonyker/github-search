@@ -9,7 +9,6 @@ import { GithubApiService } from '../github-api.service'
 export class SearchComponent implements OnInit {
   languages = ['Javascript', 'css', 'html', 'php', 'ruby', 'c++', 'python', 'c#', 'java', 'go', 'haskel'];
   types = ['Repositories'];
-  currentLang = 'Language';
   currentType = 'Type';
   languagesListOpen = false;
   typesListOpen = false;
@@ -18,7 +17,7 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
   chooseLanguage(language) {
-    this.currentLang = language;
+    this.githubApi.choosedLanguage = language;
   }
   chooseType(type) {
     this.currentType = type;
@@ -41,7 +40,6 @@ export class SearchComponent implements OnInit {
       }
   }
   searchRepositories(inputTopic) {
-    this.githubApi.choosedLanguage = this.currentLang;
     this.githubApi.apiRequest(inputTopic.value);
   }
 }

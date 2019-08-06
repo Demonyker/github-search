@@ -1,22 +1,25 @@
 export class GithubApiService {
-    choosedLanguage = '';
+    choosedLanguage = 'Language';
     topics = [];
     results = [];
-    tags = [];
     myRepoList = [];
     notFoundResult: boolean;
-    plitkaDisplay: boolean;
     check: boolean;
     repositoriesList = [];
     myListPage = false;
-    searchPage = true;
+    searchPage = false;
     inputTopics = false;
     viewButtons = false;
+    keyWords = '';
+    plitkaDisplay = false;
+    listDisplay = true;
+    buttonStatus = 'ADD TO LIST';
+    noMainPage = false;
     constructor() {}
     apiRequest(topic) {
+        this.keyWords = topic;
         this.topics = topic.split(' ');
         this.results = [];
-        this.tags = [];
         this.repositoriesList.length = 0;
         this.results.length = 0;
         if (this.choosedLanguage === 'Language') {
@@ -30,6 +33,13 @@ export class GithubApiService {
         .then( result => {
             result.items.forEach(item => {
                 item.repoAdded = false;
+                item.buttonStatus = "ADD TO LIST";
+                this.myRepoList.forEach( repo => {
+                    if(repo.full_name === item.full_name) {
+                        item.repoAdded = true;
+                        item.buttonStatus = "REMOVE FROM LIST";
+                    }
+                })
                 this.results.push(item);
                 this.repositoriesList.push(item);
                 item.searchKeywords = [];
@@ -50,8 +60,9 @@ export class GithubApiService {
                 this.viewButtons = false;
             }
         })
+        
     }
-    addRepoToMyList(button, repo) {
+    addRepoToMyList(repo) {
         let repoLenght = this.myRepoList.length;
         let check = true;
         for (let i = 0; i < repoLenght; i += 1) {
@@ -64,9 +75,11 @@ export class GithubApiService {
         }
         if (check != false) {
             repo.repoAdded = true;
+            repo.buttonStatus = "REMOVE FROM LIST"
             this.myRepoList.push(repo);
         } else if (check === false) {
             repo.repoAdded = false;
+            repo.buttonStatus = "ADD TO LIST"
         }
         if (this.myListPage === true) {
             this.repositoriesList.length = 0;
@@ -74,15 +87,9 @@ export class GithubApiService {
                 this.repositoriesList.push(repo);
             })
         }
-        if (button) {
-            if (repo.repoAdded === true) {
-            button.innerHTML = "REMOVE FROM LIST"
-            } else if (repo.repoAdded === false) {
-                button.innerHTML = "ADD TO LIST"
-            }
-        }
     }
     switchOnMyList() {
+        this.noMainPage = true;
         this.repositoriesList.length = 0;
         this.myRepoList.forEach( repo => {
             this.repositoriesList.push(repo);
@@ -91,9 +98,20 @@ export class GithubApiService {
         this.searchPage = false;
     }
     switchOnSearch() {
+        this.noMainPage = true;
         this.repositoriesList.length = 0;
-        this.results.forEach( repo => {
-            this.repositoriesList.push(repo);
+        this.results.forEach( result => {
+            let repoCheck = 0;
+            this.myRepoList.forEach( repo => {
+                if (result === repo ) {
+                    repoCheck += 1;
+                }
+            })
+            if (repoCheck === 0) {
+                result.repoAdded = false;
+                result.buttonStatus = "ADD TO LIST"
+            }
+            this.repositoriesList.push(result);
         })
         this.myListPage = false;
         this.searchPage = true;
@@ -104,5 +122,13 @@ export class GithubApiService {
         } else if (topic.value.length === 0) {
             this.inputTopics = false;
         }
+    }
+    changeViewOnPlitka() {
+        this.plitkaDisplay = true;
+        this.listDisplay = false;
+      }
+    changeViewOnList() {
+        this.plitkaDisplay = false;
+        this.listDisplay = true;
     }
 }

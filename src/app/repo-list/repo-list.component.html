@@ -1,24 +1,24 @@
 <div class="repositories-list" [ngClass]="{'plitka-disp': githubApi.plitkaDisplay}">
     <div class="change-view-buttons" [ngClass]="{'change-view-buttons-active': githubApi.viewButtons}">
-        <div class="plitka" (click)="githubApi.changeViewOnPlitka()">
+        <button class="plitka" (click)="githubApi.changeViewOnPlitka()">
             <div class="boxik" [ngClass]="{'boxik-active': githubApi.plitkaDisplay}"></div>
             <div class="boxik" [ngClass]="{'boxik-active': githubApi.plitkaDisplay}"></div>
             <div class="boxik" [ngClass]="{'boxik-active': githubApi.plitkaDisplay}"></div>
             <div class="boxik" [ngClass]="{'boxik-active': githubApi.plitkaDisplay}"></div>
-        </div>
-        <div class="spisok" (click)="githubApi.changeViewOnList()">
+        </button>
+        <button class="spisok" (click)="githubApi.changeViewOnList()">
             <div class="spisok__line" [ngClass]="{'spisok-active': githubApi.listDisplay}"></div>
             <div class="spisok__line" [ngClass]="{'spisok-active': githubApi.listDisplay}"></div>
             <div class="spisok__line" [ngClass]="{'spisok-active': githubApi.listDisplay}"></div>
-        </div>
+        </button>
     </div>
     <div class="repositores" *ngFor="let repo of githubApi.repositoriesList">
         <hr>
         <div class="repositori">
             <div class="repositori__main-info">
-                    <div class="add-repo-tolist" (click)="githubApi.addRepoToMyList(repo)">
+                    <button class="add-repo-tolist" (click)="githubApi.addRepoToMyList(repo)">
                         <div class="repo-no-added" [ngClass]="{'repo-added': repo.repoAdded}"></div>
-                    </div>
+                    </button>
                     <div class="repositori__information">
                     <a class="repositori__header" href="{{ repo.html_url }}" target="_blank">
                         {{ repo.full_name }}
@@ -57,17 +57,17 @@
 
 <div class="view-repo-plitka" [ngClass]="{'listDisplay': githubApi.listDisplay}">
     <div class="change-view-buttons" [ngClass]="{'change-view-buttons-active': githubApi.viewButtons}">
-            <div class="plitka" (click)="githubApi.changeViewOnPlitka()">
+            <button class="plitka" (click)="githubApi.changeViewOnPlitka()">
                 <div class="boxik" [ngClass]="{'boxik-active': githubApi.plitkaDisplay}"></div>
                 <div class="boxik" [ngClass]="{'boxik-active': githubApi.plitkaDisplay}"></div>
                 <div class="boxik" [ngClass]="{'boxik-active': githubApi.plitkaDisplay}"></div>
                 <div class="boxik" [ngClass]="{'boxik-active': githubApi.plitkaDisplay}"></div>
-            </div>
-            <div class="spisok" (click)="githubApi.changeViewOnList()">
+            </button>
+            <button class="spisok" (click)="githubApi.changeViewOnList()">
                 <div class="spisok__line" [ngClass]="{'spisok-active': githubApi.listDisplay}"></div>
                 <div class="spisok__line" [ngClass]="{'spisok-active': githubApi.listDisplay}"></div>
                 <div class="spisok__line" [ngClass]="{'spisok-active': githubApi.listDisplay}"></div>
-            </div>
+            </button>
         </div>
     <div class="repo-boxes">
         <div class="repo-box" *ngFor="let repo of githubApi.repositoriesList">

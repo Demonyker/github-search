@@ -14,8 +14,8 @@
         <div class="search-place__language-list">
         <p class="currentLanguage">{{ githubApi.choosedLanguage }}</p>
         <ul class="list" [ngClass]="{'languages-list-open': languagesListOpen}" #languagesList>
-            <li class="list__item" *ngFor="let language of languages" (click)="chooseLanguage(language)">
-                {{language}}
+            <li class="list__item" *ngFor="let language of languages">
+                <button class="list__button"  (click)="chooseLanguage(language)"> {{language}} </button>
             </li>
         </ul>
         </div>

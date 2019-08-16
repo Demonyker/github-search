@@ -47,8 +47,9 @@
     }
 }
 .add-repo-tolist {
-    width: 20px;
-    height: 20px;
+    outline: none;
+    width: 25px;
+    height: 25px;
     background: #FFFFFF;
     border: 1px solid #0366D6;
     box-sizing: border-box;
@@ -223,6 +224,8 @@
     color: #FFFFFF;
 }
 .plitka, .spisok {
+    outline: none;
+    border: none;
     width: 50px;
     height: 32px;
     margin-top: 27px;
@@ -251,7 +254,7 @@
     flex-direction: column;
     &__line {
         width: 30px;
-        height: 7px;
+        height: 3px;
         background: #E0E0E0;
         margin-top: 10px;
     }

@@ -67,7 +67,19 @@
         background: white;
         border-bottom: 1px solid #0366D6;
         cursor: pointer;
+    }
+    &__button {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14.5px;
+        line-height: 17px;
+        border: none;
         padding: 5px;
+        width: 100%;
+        outline: none;
+        text-align: start;
+        cursor: pointer;
     }
 }
 .languages-list-open {
